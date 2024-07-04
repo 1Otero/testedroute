@@ -16,7 +16,7 @@ export class HomeStoreComponent implements OnInit{
     description: "Verificar",
     status: 0,
     codStore: "Verificar",
-    nitStore: "Verificar",
+    nitStore: "Verificar003291-1",
     notView: 0,
     createdDate: new Date()
   };
@@ -29,9 +29,17 @@ export class HomeStoreComponent implements OnInit{
     console.log(params)
     if(params != null){
       var idStore= params['id']
-      if(idStore == null){
+      const listStore= localStorage.getItem("listStore")
+      if(idStore == null || listStore==null){
         console.log("idStore null 404!!!")
         return
+      }
+      const bodyListStore:Store[]= JSON.parse(listStore)
+      const meStore= bodyListStore.find(s => s.storeId == idStore)
+      console.log(meStore)
+      if(meStore == null){
+         console.log("This store is private")
+         return  
       }
       this.storeService.getStore(idStore).subscribe(s => {
         console.log(s)

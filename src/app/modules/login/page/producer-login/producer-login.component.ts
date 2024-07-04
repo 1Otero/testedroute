@@ -38,6 +38,7 @@ export class ProducerLoginComponent {
        this.producerId= meBody.producerId;
        //this.route.navigate(['/home/homeproducer'], { state: {producer: this.producer}});
        this.route.navigate(['/home/homeproducer'], { state: {id: this.producerId}});
+       localStorage.setItem("producer", JSON.stringify(meBody))
        return
       }
       this.alertPrincipalService.showAlert({type:"danger", message:"No se encontro registro Yo-Producer con ese correo y contraseña"})

@@ -19,8 +19,17 @@ export class HomeProducerComponent {
     this.getInfoProducer();
   }
   getInfoProducer(){
-    const navigate= this.router.getCurrentNavigation(); 
-    const idProducer= navigate?.extras?.state?.['id']
+    var idProducer= 0;
+    var bodyStore= localStorage.getItem("producer")
+    console.log(bodyStore)
+    if(bodyStore == null){
+      const navigate= this.router.getCurrentNavigation(); 
+      idProducer= navigate?.extras?.state?.['id']
+    }else{
+      var jsonBody= JSON.parse(bodyStore)
+      idProducer= Number.parseInt(jsonBody.producerId)
+    }
+    console.log(idProducer)
     //const producer= navigate?.extras?.state?.['producer']
     var arrayHome: any;
     //this.producer= producer
@@ -37,6 +46,9 @@ export class HomeProducerComponent {
         // } 
         console.log(this.producer)
         this.listStore= successBody.listStore
+        localStorage.setItem("listStore", JSON.stringify(this.listStore.map(s => {
+          return {storeId: s.storeId, "codStore": s.codStore}
+        })))
         this.alertPrincipalService.showAlert({type: 'success', message: "Bienvenido Yo-Producer - " + this.producer?.name})
         return;
       }
