@@ -8,6 +8,35 @@ const routes: Routes = [{
 },{
   path: 'app/:id',
   component: AppComponent
+},{
+  path: 'producer',
+  loadChildren: () => import('./modules/producer/producer.module').then(p => p.ProducerModule)
+},{
+  path: 'user',
+  loadChildren: () => import('./modules/user/user.module').then(u => u.UserModule)
+},{
+  path: 'storeandproducer',
+  loadChildren: () => import('./modules/store-and-producer/store-and-producer.module').then(s => s.StoreAndProducerModule)
+},{
+  path: 'producersignup',
+  loadChildren: () => import('./modules/producer-signup/producer-signup.module').then(s => s.ProducerSignupModule)
+}, {
+  path: 'login',
+  loadChildren: () => import('./modules/login/login.module').then(l => l.LoginModule)
+},{
+  path: 'home',
+  loadChildren: () => import('./modules/home/home.module').then(h => h.HomeModule)
+},{
+  path: '**',
+  redirectTo: 'utils/not-found',
+  pathMatch: 'full' 
+},{
+  path: 'error',
+  redirectTo: 'utils/error-internal',
+  pathMatch: 'full'
+},{
+  path: 'utils',
+  loadChildren: () => import('./modules/utils/utils.module').then(u => u.UtilsModule)
 }];
 
 @NgModule({

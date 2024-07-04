@@ -1,0 +1,185 @@
+<!--<div class="mt-3 h-screen flex items-center justify-center mx-auto">
+  <div class="container bg-white p-6 rounded shadow-md">-->
+<div class="mt-32">
+  <div class="flex flex-wrap justify-center">
+    <!--<button mat-raised-button (click)="isLinear= !isLinear" id="toggle-linear">
+        {{isLinear? 'saltar paso' : 'seguir pasa a paso'}}
+    </button>-->
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstformgroup" class="p-11">
+           <form [formGroup]="firstformgroup"> 
+            <ng-template matStepLabel>Fill out your email - yo productor</ng-template>
+            <!--<ng-template matStepLabel>Fill out your email</ng-template>-->
+            <div class="flex flex-grow justify-around m-6 w-full">
+              <div class="w-1/2 m-2">
+                <mat-form-field class="w-full">
+                  <div>
+                    <mat-label>Email producer</mat-label>
+                    <input formControlName="email" placeholder="Email" (blur)="getValidateEmail()" matInput required/>
+                    <div *ngIf="firstformgroup.get('email')?.touched">
+                        <div *ngIf="firstformgroup.controls['email'].hasError('required')">
+                             <p>Debes ingresar tu correo electronico como productor</p>
+                        </div>
+                    </div>
+                  </div>
+                </mat-form-field> 
+              </div>
+              <div *ngIf="isViewToken" class="w-1/2 m-2">
+               <mat-form-field class="w-full"> 
+                <div>
+                  <mat-label>Token</mat-label>
+                  <input formControlName="token" placeholder="Token" [(ngModel)]="tokenMe" #inputViewToken matInput required/>
+                  <div *ngIf="firstformgroup.get('token')?.touched">
+                    <div *ngIf="firstformgroup.controls['token'].hasError('required')">
+                       <p>Debe registrar el token enviado a su email</p>
+                    </div>
+                  </div>
+                </div>
+                </mat-form-field>   
+            </div>
+            </div>
+            <!---
+             <div *ngIf="isViewToken">
+                <mat-label>Token</mat-label>
+                <input formControlName="token" placeholder="token" [(ngModel)]="tokenMe" #inputViewToken matInput />
+                <div *ngIf="firstformgroup.get('token')?.touched">
+                  <div *ngIf="firstformgroup.controls['token'].hasError('required')">
+                     <p>Debe registrar el token enviado a su email</p>
+                  </div>
+                </div>
+              </div>
+            -->
+            <div *ngIf="isViewToken && (tokenMe && tokenMe.length > 3)" class="flex flex-grow justify-around">
+              <button mat-button matStepperPrevious>Back</button>
+              <!--<button mat-button matStepperNext (click)="getValidateToken()" >Next</button>-->
+              <button mat-button (click)="getValidateToken()">Next</button>
+            </div>
+           </form>
+        </mat-step>
+        <mat-step [stepControl]="secondformgroup" class="p-11">
+            <form [formGroup]="secondformgroup">
+               <ng-template matStepLabel>Fill all your info</ng-template>
+              <!--flex flex-grow justify-around m-6 w-full-->
+              <div class="flex flex-wrap m-6 w-full">
+              <!--<div class="flex flex-wrap m-6">  -->
+                <div class="w-1/2 box-border">
+                  <mat-form-field class="w-full">
+                    <div>
+                    <mat-label>Email</mat-label>
+                    <input formControlName="emailProducer" placeholder="Email" matInput required/>
+                     <div *ngIf="secondformgroup.controls['emailProducer'].hasError('required')">
+                        <p>Algo paso con su email yo-productor. porfavor validar</p>
+                     </div>
+                    </div>
+                  </mat-form-field> 
+                </div>
+                <div class="w-1/2 box-border">
+                 <mat-form-field class="w-full">
+                    <div>
+                    <mat-label>NameProducer</mat-label>
+                    <input formControlName="nameProducer" placeholder="Name" matInput required />
+                    <div *ngIf="secondformgroup.get('nameProducer')?.touched">
+                       <div *ngIf="secondformgroup.controls['nameProducer'].hasError('required')">
+                         <p>Debes ingresar nombre - producer</p>
+                       </div>  
+                    </div> 
+                    </div>
+                 </mat-form-field>
+                </div>
+                <div class="w-1/2 box-border">
+                  <mat-form-field class="w-full">
+                    <div>
+                    <mat-label>LastNameProducer</mat-label>
+                    <input formControlName="lastNameProducer" placeholder="LastName" matInput required/>
+                    <div *ngIf="secondformgroup.get('lastNameProducer')?.touched">
+                     <div *ngIf="secondformgroup.controls['lastNameProducer'].hasError('required')">
+                       <p>Debe ingresar apellido - producer</p>
+                     </div>
+                    </div>
+                    </div>
+                 </mat-form-field>
+                </div>
+              </div>
+              <!--<div>
+              <mat-form-field>
+                <mat-label>description yo-productor</mat-label>
+                <input formControlName="descriptionProducer" placeholder="description yo-productor" matInput required />
+                <div *ngIf="secondformgroup.get('descriptionProducer')?.touched">
+                  <div *ngIf="secondformgroup.controls['descriptionProducer'].hasError('required')">
+                     <p>Debe colocar description de porque se sea este yo-productor</p>
+                  </div>
+                </div>
+               </mat-form-field>
+              </div> -->
+               <div *ngIf="!secondformgroup.controls['nameProducer'].hasError('required') && !secondformgroup.controls['lastNameProducer'].hasError('required')" class="flex flex-grow justify-around">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+               </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="storeRequired" class="p-1">
+          <form [formGroup]="storeRequired">
+            <ng-template matStepLabel>Info store</ng-template>
+            <div class="flex flex-wrap justify-around m-6 w-full">
+              <div class="w-1/2">
+                <mat-form-field class="w-full">
+                  <div>
+                  <mat-label>nameStore</mat-label>
+                  <input formControlName="nameStore" placeholder="NameStore" matInput required/>
+                  <div *ngIf="storeRequired.get('nameStore')?.touched">
+                    <div *ngIf="storeRequired.controls['nameStore'].hasError('required')">
+                       <p>Debe incluir nombre - Store</p> 
+                    </div>
+                  </div>
+                  </div>
+                </mat-form-field>
+              </div>
+              <div class="w-1/2">
+                <mat-form-field class="w-full">
+                  <div>
+                  <mat-label>NitStore</mat-label>
+                  <input formControlName="nitStore" placeholder="NitStore" matInput />
+                  <!--<div *ngIf="storeRequired.get('nitStore')?.touched">
+                    <div *ngIf="storeRequired.controls['nitStore'].hasError('required')">
+                       <p>Debe ingresar nit - Store</p>
+                    </div>
+                  </div>-->
+                  </div>
+                </mat-form-field>
+              </div>
+              <div class="w-1/2">
+                <mat-form-field class="w-full">
+                  <div>
+                  <mat-label>EmailStore</mat-label>
+                  <input formControlName="emailStore" placeholder="EmailStore" matInput />
+                  </div>
+                </mat-form-field>
+              </div>
+              <div class="w-1/2">
+                <mat-form-field class="w-full">
+                  <div>
+                  <mat-label>DescriptionStore</mat-label>
+                  <input formControlName="descriptionStore" placeholder="DescriptionStore" matInput />
+                  </div>
+                </mat-form-field>
+              </div>
+            </div>
+            <div *ngIf="!storeRequired.controls['nameStore'].hasError('required') && !storeRequired.controls['nitStore'].hasError('required')">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="createStoreAndProducer()">Create yo producer</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>you are now done</p>
+          <div>
+            <h2>Congratullation your are yo-producer</h2>
+            <!-- <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="resetMe()">Reset</button> -->
+          </div>
+        </mat-step>
+    </mat-stepper>    
+    </div>    
+<div>
+</div>  
