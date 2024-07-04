@@ -18,12 +18,12 @@ export class CardStoreComponent implements OnInit{
     notView: 0,
     createdDate: new Date()
   }
-  //urlStore:String= "/home/homestore/"
-  urlStore:String= "/home/homestore"
+  urlStore:String= "/home/homestore/"
+  //urlStore:String= "/home/homestore"
   constructor(){
   }
   ngOnInit():void{
     const idStore= new String(this.meStore.storeId)
-    //this.urlStore= this.urlStore.toString() + idStore
+    this.urlStore= this.urlStore.toString() + idStore
   }
 }

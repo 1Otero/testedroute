@@ -24,47 +24,46 @@ export class HomeStoreComponent implements OnInit{
     console.log("params")
   }
   ngOnInit():void{
-    // const params= this.route.snapshot.params
-    // console.log("params")
-    // console.log(params)
-    // if(params != null){
-    //   var idStore= params['id']
-    //   idStore= 1
-    //   if(idStore == null){
-    //     console.log("idStore null 404!!!")
-    //     return
-    //   }
-    //   this.storeService.getStore(idStore).subscribe(s => {
-    //     console.log(s)
-    //     if(s.status == 404){
-    //       console.log("404!!!")
-    //       return    
-    //     }
-    //     this.store= s.success
-    //     console.log(this.store)
-    //   })
-    // }
-    const params= this.route.params.subscribe(p => {
-      console.log("params")
-      console.log(p)
-      if(p != null){
-        var idStore= p['id']
-        idStore= 1
-        if(idStore == null){
-          console.log("idStore null 404!!!")
-          return
-        }
-        this.storeService.getStore(idStore).subscribe(s => {
-          console.log(s)
-          if(s.status == 404){
-            console.log("404!!!")
-            return    
-          }
-          this.store= s.success
-          console.log(this.store)
-        })
+    const params= this.route.snapshot.params
+    console.log("params")
+    console.log(params)
+    if(params != null){
+      var idStore= params['id']
+      if(idStore == null){
+        console.log("idStore null 404!!!")
+        return
       }
-    })
+      this.storeService.getStore(idStore).subscribe(s => {
+        console.log(s)
+        if(s.status == 404){
+          console.log("404!!!")
+          return    
+        }
+        this.store= s.success
+        console.log(this.store)
+      })
+    }
+    // const params= this.route.params.subscribe(p => {
+    //   console.log("params")
+    //   console.log(p)
+    //   if(p != null){
+    //     var idStore= p['id']
+    //     idStore= 1
+    //     if(idStore == null){
+    //       console.log("idStore null 404!!!")
+    //       return
+    //     }
+    //     this.storeService.getStore(idStore).subscribe(s => {
+    //       console.log(s)
+    //       if(s.status == 404){
+    //         console.log("404!!!")
+    //         return    
+    //       }
+    //       this.store= s.success
+    //       console.log(this.store)
+    //     })
+    //   }
+    // })
     
   }
 }

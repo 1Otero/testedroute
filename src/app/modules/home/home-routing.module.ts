@@ -7,20 +7,8 @@ const routes: Routes = [{
   path: 'homeproducer',
   component: HomeProducerComponent
 },{
-  //path: 'homestore/:id',
-  path: 'homestore',
+  path: 'homestore/:id',
   component: HomeStoreComponent
-},{
-  path: 'homestore/:id/refff',
-  component: HomeStoreComponent,
-  resolve: {
-    id: (ActivatedRouteSnapshot: any) => {
-      // Implement logic to retrieve the 'id' parameter value
-      // This could involve fetching data from an API, a database, etc.
-      // Return the resolved value as a Promise
-      return Promise.resolve(12345); // Replace with actual logic
-    }
-  }
 }];
 
 @NgModule({
