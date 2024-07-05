@@ -22,7 +22,15 @@ import { ComparePassword } from '../../../model/utils/compare/compare-password';
 })
 export class ProducerSignupComponent implements OnInit{
   @ViewChild("stepper") private myStepper!:MatStepper;
-  @ViewChild("changeSize") changeSizeDiv!:ElementRef<HTMLDivElement>
+  @ViewChild('changeSize') changeSizeElement!: ElementRef;
+
+  // ngAfterViewInit() {
+  //   // Aquí puedes acceder al elemento DOM
+  //   console.log(this.changeSizeElement.nativeElement);
+    
+  //   // Ejemplo de cómo modificar el elemento
+  //   this.changeSizeElement.nativeElement.style.backgroundColor = 'lightblue';
+  // }
   password:ComparePassword={password:"", password_compare: ""};
   firstformgroup:any= FormGroup;
   secondformgroup:any= FormGroup;
@@ -65,10 +73,22 @@ export class ProducerSignupComponent implements OnInit{
     // this.render.removeClass(sizeDiv, "h-screen") 
     // console.log(sizeDiv)
     //console.log(this.changeSizeDiv.nativeElement)
-    console.log(this.changeSizeDiv.nativeElement)
+    //console.log(this.changeSizeElement.nativeElement)
+    setTimeout(() => {
+      if (this.changeSizeElement) {
+        console.log(this.changeSizeElement.nativeElement);
+        const divSize= this.changeSizeElement.nativeElement
+        divSize.classList.remove("h-screen")
+      }
+    }, 1000);
   }
   AfterViewInit(){
-    console.log(this.changeSizeDiv.nativeElement)
+    setTimeout(() => {
+      if (this.changeSizeElement) {
+        console.log(this.changeSizeElement.nativeElement);
+      }
+    });
+    console.log(this.changeSizeElement.nativeElement)
   }
   isLinear= true;
   isViewToken:Boolean= false;
