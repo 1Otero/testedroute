@@ -27,7 +27,7 @@ export class ProducerLoginComponent {
       this.alertPrincipalService.showAlert({type:"danger", message:"Valide su correo y contraseña"})
       return;  
     }
-    this.login.getProducerLogin(email, "123")
+    this.login.getProducerLogin(email, pass)
     .subscribe(pl => {
       if(pl.success != null){
        const meBody= Object.assign(pl.success);

@@ -1,6 +1,10 @@
-<!--<div class="mt-3 h-screen flex items-center justify-center mx-auto">
+<div>
+  <div #changeSize class="flex items-center justify-center h-screen">
+    <p class="text-8xl text-gray-600 p-8 font-black">Yo-Producer</p>
+  </div>
+  <!--<div class="mt-3 h-screen flex items-center justify-center mx-auto">
   <div class="container bg-white p-6 rounded shadow-md">-->
-<div class="mt-32">
+<div class="m-10">
   <div class="flex flex-wrap justify-center">
     <!--<button mat-raised-button (click)="isLinear= !isLinear" id="toggle-linear">
         {{isLinear? 'saltar paso' : 'seguir pasa a paso'}}
@@ -17,7 +21,7 @@
                     <mat-label>Email producer</mat-label>
                     <input formControlName="email" placeholder="Email" (blur)="getValidateEmail()" matInput required/>
                     <div *ngIf="firstformgroup.get('email')?.touched">
-                        <div *ngIf="firstformgroup.controls['email'].hasError('required')">
+                        <div *ngIf="firstformgroup.controls['email'].hasError('required') || firstformgroup.controls['email'].hasError('email')">
                              <p>Debes ingresar tu correo electronico como productor</p>
                         </div>
                     </div>
@@ -30,7 +34,7 @@
                   <mat-label>Token</mat-label>
                   <input formControlName="token" placeholder="Token" [(ngModel)]="tokenMe" #inputViewToken matInput required/>
                   <div *ngIf="firstformgroup.get('token')?.touched">
-                    <div *ngIf="firstformgroup.controls['token'].hasError('required')">
+                    <div *ngIf="firstformgroup.controls['token'].hasError('required') || firstformgroup.controls['token'].hasError('minlength')">
                        <p>Debe registrar el token enviado a su email</p>
                     </div>
                   </div>
@@ -67,11 +71,45 @@
                     <div>
                     <mat-label>Email</mat-label>
                     <input formControlName="emailProducer" placeholder="Email" matInput required/>
-                     <div *ngIf="secondformgroup.controls['emailProducer'].hasError('required')">
+                     <div *ngIf="secondformgroup.get('emailProducer')?.touched">
+                      <div *ngIf="secondformgroup.controls['emailProducer'].hasError('required')">
                         <p>Algo paso con su email yo-productor. porfavor validar</p>
+                     </div>
                      </div>
                     </div>
                   </mat-form-field> 
+                </div>
+                <div class="w-1/2 box-border">
+                 <mat-form-field class="w-full">
+                  <div>
+                    <mat-label>password</mat-label>
+                    <input [(ngModel)]="password.password" formControlName="password" matInput (change)="comparePassword()"/>
+                    <div *ngIf="secondformgroup.get('password')?.touched">
+                       <div *ngIf="secondformgroup.controls['password'].hasError('required')">
+                        <p>Debe ingresar una contraseña</p> 
+                       </div>
+                       <div *ngIf="secondformgroup.controls['password'].hasError('minlength')">
+                        <p>Debe ingresar una contraseña mas larga</p> 
+                       </div>
+                    </div>
+                  </div>
+                 </mat-form-field>
+                </div>
+                <div class="w-1/2 box-border">
+                  <mat-form-field class="w-full">
+                    <div>
+                      <mat-label>password compare</mat-label>
+                      <input [(ngModel)]="password.password_compare" matInput formControlName="password_compare" (change)="comparePassword()" />
+                      <div *ngIf="secondformgroup.get('password_compare')?.touched">
+                        <div *ngIf="secondformgroup.controls['password_compare'].hasError('required')">
+                          <p>Debe ingresar una contraseña para comparar</p> 
+                        </div>
+                        <div *ngIf="secondformgroup.controls['password_compare'].hasError('minlength')">
+                          <p>Debe ingresar una contraseña mas larga</p> 
+                        </div>
+                      </div>
+                    </div>
+                  </mat-form-field>
                 </div>
                 <div class="w-1/2 box-border">
                  <mat-form-field class="w-full">
@@ -183,3 +221,4 @@
     </div>    
 <div>
 </div>  
+</div>

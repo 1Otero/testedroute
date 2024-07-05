@@ -1,5 +1,5 @@
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { STEPPER_GLOBAL_OPTIONS, StepperSelectionEvent } from '@angular/cdk/stepper';
+import { Component, Input, ElementRef, ViewChild, OnInit, Renderer2, AfterViewInit } from '@angular/core';
 import { FormsModule, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { SessionTokenService } from './../../../service/session-token/session-token.service'
 import { StoreAndProducerService } from './../../../service/store-and-producer/store-and-producer.service'
@@ -7,6 +7,7 @@ import { JsonStoreAndProducer } from './../../../model/storeandproducer/json-sto
 import { MatStepper } from '@angular/material/stepper';
 import { Storeandproducer } from '../../../model/storeandproducer/storeandproducer';
 import { AlertPrincipalService } from '../../../service/alert/alert-principal.service';
+import { ComparePassword } from '../../../model/utils/compare/compare-password';
 
 @Component({
   selector: 'app-producer-signup',
@@ -19,8 +20,10 @@ import { AlertPrincipalService } from '../../../service/alert/alert-principal.se
     }
   ]
 })
-export class ProducerSignupComponent {
-  @ViewChild("stepper") private myStepper:MatStepper | undefined;
+export class ProducerSignupComponent implements OnInit{
+  @ViewChild("stepper") private myStepper!:MatStepper;
+  @ViewChild("changeSize") changeSizeDiv!:ElementRef<HTMLDivElement>
+  password:ComparePassword={password:"", password_compare: ""};
   firstformgroup:any= FormGroup;
   secondformgroup:any= FormGroup;
   storeRequired:any=FormGroup;
@@ -33,14 +36,18 @@ export class ProducerSignupComponent {
   isDisabled:Boolean= true;
   jsonStoreAndProducer!:JsonStoreAndProducer;
   public constructor(private formBuilder:FormBuilder, private sessionTokenService:SessionTokenService,
-     private storeAndProducerService:StoreAndProducerService, private alertPrincipalService:AlertPrincipalService){
+     private storeAndProducerService:StoreAndProducerService, private alertPrincipalService:AlertPrincipalService, 
+     private elementRef:ElementRef, private render:Renderer2){
   this.firstformgroup= this.formBuilder.group({
-    email: ['', Validators.required],
-    token: ['12345']
+    email: ['', Validators.compose([Validators.required, Validators.email])],
+    token: ['123', Validators.compose([Validators.required, Validators.minLength(4)])],
+    validateToken: [false, Validators.requiredTrue]
     });
   this.secondformgroup= this.formBuilder.group({
     //email: ['', Validators.required],
     emailProducer: new FormControl({value: '', disabled: true}),
+    password: ['', Validators.compose([Validators.minLength(3), Validators.required])],
+    password_compare: ['', [Validators.required, Validators.minLength(3)]],
     nameProducer: ['', Validators.required],
     lastNameProducer: ['', Validators.required],
     //descriptionProducer: ['', Validators.required]
@@ -48,9 +55,20 @@ export class ProducerSignupComponent {
   this.storeRequired= this.formBuilder.group({
     nameStore: ['', Validators.required],
     emailStore: ['', Validators.nullValidator],
-    nitStore: ['', Validators.nullValidator],
+    nitStore: ['', Validators.required],
     descriptionStore: ['', Validators.nullValidator]
   })
+  }
+  ngOnInit(): void {
+    // changeSizeDiv= this.elementRef.nativeElement.querySelector("#changeSize")
+    // console.log(sizeDiv)
+    // this.render.removeClass(sizeDiv, "h-screen") 
+    // console.log(sizeDiv)
+    //console.log(this.changeSizeDiv.nativeElement)
+    console.log(this.changeSizeDiv.nativeElement)
+  }
+  AfterViewInit(){
+    console.log(this.changeSizeDiv.nativeElement)
   }
   isLinear= true;
   isViewToken:Boolean= false;
@@ -91,6 +109,7 @@ export class ProducerSignupComponent {
     .subscribe((v) => {
       const objectVerify= Object.assign(v.success);
       if(objectVerify.existToken){
+        this.firstformgroup.get("validateToken").setValue(true)
         const emailVerifyed= objectVerify.email
         //this.email= objectVerify.email
         //console.log(this.email)
@@ -109,6 +128,13 @@ export class ProducerSignupComponent {
     this.isViewToken= false;
     this.myStepper?.reset()
   }
+  preventMatStep(event:StepperSelectionEvent){
+    this.myStepper.selectedIndex= event.selectedIndex
+  }
+  comparePassword(){
+    this.password.password == this.password.password_compare
+    console.log(this.secondformgroup.get("password").setError())
+  }
   createStoreAndProducer(){
     //const jsonValueProducer= Object.assign(this.secondformgroup.value)
     const jsonValueProducer= Object.assign(this.secondformgroup.getRawValue())
@@ -116,6 +142,13 @@ export class ProducerSignupComponent {
     const jsonStoreAndProducerBody:Storeandproducer= Object.assign(jsonValueProducer, jsonValueStore)
     // const emailProducer= this.secondformgroup.get('emailProducer').value;
     // jsonStoreAndProducerBody.emailProducer= emailProducer;
+    console.log(this.secondformgroup.valid)
+    console.log(this.storeRequired.valid)
+    if(!this.secondformgroup.valid || !this.storeRequired.valid){
+       console.log("Debe validar la informacion Yo-Producer y su Store")
+       this.alertPrincipalService.showAlert({type:'danger', message: 'No se puede crear Yo-Producer si una Store'})
+       return
+    }
     this.storeAndProducerService.createStoreAndProducer(jsonStoreAndProducerBody)
     .subscribe(v => {
       console.log(v)
