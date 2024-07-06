@@ -1,5 +1,5 @@
 import { STEPPER_GLOBAL_OPTIONS, StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Component, Input, ElementRef, ViewChild, OnInit, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, OnInit, Renderer2 } from '@angular/core';
 import { FormsModule, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { SessionTokenService } from './../../../service/session-token/session-token.service'
 import { StoreAndProducerService } from './../../../service/store-and-producer/store-and-producer.service'
@@ -76,19 +76,11 @@ export class ProducerSignupComponent implements OnInit{
     //console.log(this.changeSizeElement.nativeElement)
     setTimeout(() => {
       if (this.changeSizeElement) {
-        console.log(this.changeSizeElement.nativeElement);
         const divSize= this.changeSizeElement.nativeElement
+        divSize.style.transition= "height 0.7s ease-in duration-700"
         divSize.classList.remove("h-screen")
       }
-    }, 1000);
-  }
-  AfterViewInit(){
-    setTimeout(() => {
-      if (this.changeSizeElement) {
-        console.log(this.changeSizeElement.nativeElement);
-      }
-    });
-    console.log(this.changeSizeElement.nativeElement)
+    }, 800);
   }
   isLinear= true;
   isViewToken:Boolean= false;
