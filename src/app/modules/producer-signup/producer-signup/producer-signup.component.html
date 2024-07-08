@@ -1,11 +1,11 @@
 <div>
   <div #changeSize class="flex items-center justify-center h-screen">
-    <p class="text-6xl p-4 md:text-8xl text-gray-600 md:p-8 font-black">Yo-Producer</p>
+    <p class="text-6xl md:text-8xl text-gray-600 md:p-8 font-black">Yo-Producer</p>
   </div>
   <!--<div class="mt-3 h-screen flex items-center justify-center mx-auto">
   <div class="container bg-white p-6 rounded shadow-md">-->
 <div class="md:m-10">
-  <div class="flex flex-wrap justify-center">
+  <div class="md:flex md:flex-wrap md:justify-center">
     <!--<button mat-raised-button (click)="isLinear= !isLinear" id="toggle-linear">
         {{isLinear? 'saltar paso' : 'seguir pasa a paso'}}
     </button>-->
@@ -14,8 +14,8 @@
            <form [formGroup]="firstformgroup"> 
             <ng-template matStepLabel>Fill out your email - yo productor</ng-template>
             <!--<ng-template matStepLabel>Fill out your email</ng-template>-->
-            <div class="flex flex-grow justify-around m-6 w-full">
-              <div class="w-1/2 m-2">
+            <div class="md:flex md:flex-grow md:justify-around w-full">
+              <div class="md:w-1/2 m-2">
                 <mat-form-field class="w-full">
                   <div>
                     <mat-label>Email producer</mat-label>
@@ -28,7 +28,7 @@
                   </div>
                 </mat-form-field> 
               </div>
-              <div *ngIf="isViewToken" class="w-1/2 m-2">
+              <div *ngIf="isViewToken" class="md:w-1/2 m-2">
                <mat-form-field class="w-full"> 
                 <div>
                   <mat-label>Token</mat-label>
@@ -64,9 +64,9 @@
             <form [formGroup]="secondformgroup">
                <ng-template matStepLabel>Fill all your info</ng-template>
               <!--flex flex-grow justify-around m-6 w-full-->
-              <div class="flex flex-wrap m-6 w-full">
+              <div class="md:flex md:flex-wrap w-full">
               <!--<div class="flex flex-wrap m-6">  -->
-                <div class="w-1/2 box-border">
+                <div class="md:w-1/2 m-2">
                   <mat-form-field class="w-full">
                     <div>
                     <mat-label>Email</mat-label>
@@ -79,7 +79,7 @@
                     </div>
                   </mat-form-field> 
                 </div>
-                <div class="w-1/2 box-border">
+                <div class="md:w-1/2 m-2">
                  <mat-form-field class="w-full">
                   <div>
                     <mat-label>password</mat-label>
@@ -95,7 +95,7 @@
                   </div>
                  </mat-form-field>
                 </div>
-                <div class="w-1/2 box-border">
+                <div class="md:w-1/2 m-2">
                   <mat-form-field class="w-full">
                     <div>
                       <mat-label>password compare</mat-label>
@@ -111,7 +111,7 @@
                     </div>
                   </mat-form-field>
                 </div>
-                <div class="w-1/2 box-border">
+                <div class="md:w-1/2 m-2">
                  <mat-form-field class="w-full">
                     <div>
                     <mat-label>NameProducer</mat-label>
@@ -124,7 +124,7 @@
                     </div>
                  </mat-form-field>
                 </div>
-                <div class="w-1/2 box-border">
+                <div class="md:w-1/2 m-2">
                   <mat-form-field class="w-full">
                     <div>
                     <mat-label>LastNameProducer</mat-label>
@@ -155,11 +155,11 @@
                </div>
             </form>
         </mat-step>
-        <mat-step [stepControl]="storeRequired" class="p-1">
+        <mat-step [stepControl]="storeRequired" class="p-11">
           <form [formGroup]="storeRequired">
             <ng-template matStepLabel>Info store</ng-template>
-            <div class="flex flex-wrap justify-around m-6 w-full">
-              <div class="w-1/2">
+            <div class="md:flex md:flex-wrap md:justify-around w-full">
+              <div class="md:w-1/2 m-2">
                 <mat-form-field class="w-full">
                   <div>
                   <mat-label>nameStore</mat-label>
@@ -172,7 +172,7 @@
                   </div>
                 </mat-form-field>
               </div>
-              <div class="w-1/2">
+              <div class="md:w-1/2 m-2">
                 <mat-form-field class="w-full">
                   <div>
                   <mat-label>NitStore</mat-label>
@@ -185,7 +185,7 @@
                   </div>
                 </mat-form-field>
               </div>
-              <div class="w-1/2">
+              <div class="md:w-1/2 m-2">
                 <mat-form-field class="w-full">
                   <div>
                   <mat-label>EmailStore</mat-label>
@@ -193,7 +193,7 @@
                   </div>
                 </mat-form-field>
               </div>
-              <div class="w-1/2">
+              <div class="md:w-1/2 m-2">
                 <mat-form-field class="w-full">
                   <div>
                   <mat-label>DescriptionStore</mat-label>
@@ -219,6 +219,6 @@
         </mat-step>
     </mat-stepper>    
     </div>    
-<div>
+  <div>
 </div>  
 </div>

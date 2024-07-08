@@ -82,7 +82,7 @@ export class ProducerSignupComponent implements OnInit{
       }
     }, 800);
   }
-  isLinear= true;
+  isLinear= false;
   isViewToken:Boolean= false;
   getValidateEmail(){
     const emailMe= this.firstformgroup.get("email").value
