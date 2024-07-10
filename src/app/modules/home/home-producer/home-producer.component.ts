@@ -27,9 +27,9 @@ export class HomeProducerComponent {
       idProducer= navigate?.extras?.state?.['id']
     }else{
       var jsonBody= JSON.parse(bodyStore)
-      idProducer= Number.parseInt(jsonBody.producerId)
+      //idProducer= Number.parseInt(jsonBody.producerId)
+      idProducer= jsonBody.producerId
     }
-    console.log(idProducer)
     //const producer= navigate?.extras?.state?.['producer']
     var arrayHome: any;
     //this.producer= producer
