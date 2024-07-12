@@ -8,12 +8,14 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { AdminLoginComponent } from './page/admin-login/admin-login.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    ProducerLoginComponent
+    ProducerLoginComponent,
+    AdminLoginComponent
   ],
   imports: [
     CommonModule,

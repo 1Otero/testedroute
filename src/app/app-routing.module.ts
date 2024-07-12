@@ -22,7 +22,7 @@ const routes: Routes = [{
   path: 'storeandproducer',
   loadChildren: () => import('./modules/store-and-producer/store-and-producer.module').then(s => s.StoreAndProducerModule)
 },{
-  path: 'producersignup',
+  path: 'signup',
   loadChildren: () => import('./modules/producer-signup/producer-signup.module').then(s => s.ProducerSignupModule)
 }, {
   path: 'login',
