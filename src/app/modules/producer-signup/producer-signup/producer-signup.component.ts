@@ -8,6 +8,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { Storeandproducer } from '../../../model/storeandproducer/storeandproducer';
 import { AlertPrincipalService } from '../../../service/alert/alert-principal.service';
 import { ComparePassword } from '../../../model/utils/compare/compare-password';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-producer-signup',
@@ -45,7 +46,7 @@ export class ProducerSignupComponent implements OnInit{
   jsonStoreAndProducer!:JsonStoreAndProducer;
   public constructor(private formBuilder:FormBuilder, private sessionTokenService:SessionTokenService,
      private storeAndProducerService:StoreAndProducerService, private alertPrincipalService:AlertPrincipalService, 
-     private elementRef:ElementRef, private render:Renderer2){
+     private elementRef:ElementRef, private render:Renderer2, private route:Router){
   this.firstformgroup= this.formBuilder.group({
     email: ['', Validators.compose([Validators.required, Validators.email])],
     token: ['123', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -167,6 +168,7 @@ export class ProducerSignupComponent implements OnInit{
       this.alertPrincipalService.showAlert({type: 'success', message: 'Se creo el usuario correctamente'})
       this.myStepper?.next()
       this.myStepper?.reset()
+      this.route.navigate(['/login/login'])
     })
   }
 }
