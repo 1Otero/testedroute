@@ -14,9 +14,9 @@ export class EventService {
   getAllEvent(){
     
   }
-  createEvent(eventCreate:Event):Observable<Entity<Event>>{
-    console.log(eventCreate)
-    return this.http.post<Entity<Event>>(`${environment.urllocal}/event/createevent`, eventCreate)
+  createEvent(infoEventCreate:any):Observable<Entity<Event>>{
+    console.log(infoEventCreate)
+    return this.http.post<Entity<Event>>(`${environment.urllocal}/event/createevent`, infoEventCreate)
     .pipe(
       tap((e) => {
           console.log(e)
