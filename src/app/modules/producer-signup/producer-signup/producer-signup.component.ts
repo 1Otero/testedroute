@@ -131,6 +131,7 @@ export class ProducerSignupComponent implements OnInit{
         this.myStepper?.next();
         return; 
       }
+      this.firstformgroup.get("validateToken").setValue(false)
       this.alertPrincipalService.showAlert({type: 'danger', message: "Este token no es valido, debe validar su email yo-productor"});
       //this.isViewToken= false;
       return;

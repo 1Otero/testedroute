@@ -10,7 +10,7 @@ import { Store } from '../../../model/store/store';
 })
 export class HomeStoreComponent implements OnInit{
   @Input("store") store:Store={
-    storeId: null,
+    _storeId: null,
     name: "Verificar",
     email: "Verificar",
     description: "Verificar",
@@ -35,11 +35,13 @@ export class HomeStoreComponent implements OnInit{
         return
       }
       const bodyListStore:Store[]= JSON.parse(listStore)
-      const meStore= bodyListStore.find(s => s.storeId == idStore)
+      console.log(bodyListStore)
+      const meStore= bodyListStore.find(s => s._storeId == idStore)
+      console.log(meStore)
       console.log(meStore)
       if(meStore == null){
          console.log("This store is private")
-         return  
+         return
       }
       this.storeService.getStore(idStore).subscribe(s => {
         console.log(s)
@@ -72,6 +74,8 @@ export class HomeStoreComponent implements OnInit{
     //     })
     //   }
     // })
-    
+  }
+  getCreateEventManaged(){
+    //validar si es mejor un pop-ups o un redirect
   }
 }

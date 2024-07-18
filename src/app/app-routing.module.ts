@@ -31,6 +31,9 @@ const routes: Routes = [{
   path: 'home',
   loadChildren: () => import('./modules/home/home.module').then(h => h.HomeModule)
 },{
+  path: 'event',
+  loadChildren: () => import('./modules/event/event.module').then(e => e.EventModule)
+},{
   path: '**',
   redirectTo: 'utils/not-found',
   pathMatch: 'full' 

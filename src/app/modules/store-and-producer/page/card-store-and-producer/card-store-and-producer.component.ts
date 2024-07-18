@@ -10,7 +10,7 @@ import { Store } from '../../../../model/store/store';
 export class CardStoreAndProducerComponent {
  //@Input("cardStoreAndProducer") cardStoreAndProducer!:Storeandproducer
  @Input("cardStore") cardStore:Store={
-   storeId: null,
+   _storeId: null,
    name: "vanda",
    description: "vanda perreo intenso",
    email: "vanda@gmail.com",

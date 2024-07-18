@@ -8,7 +8,7 @@ import { Store } from '../../../../model/store/store';
 })
 export class CardStoreComponent implements OnInit{
   @Input("meStore") meStore:Store={
-    storeId: null,
+    _storeId: null,
     name: "re",
     email: "re",
     description: "",
@@ -23,7 +23,8 @@ export class CardStoreComponent implements OnInit{
   constructor(){
   }
   ngOnInit():void{
-    const idStore= new String(this.meStore.storeId)
+    //const idStore= new String(this.meStore.storeId)
+    const idStore= new String(this.meStore._storeId)
     this.urlStore= this.urlStore.toString() + idStore
   }
 }

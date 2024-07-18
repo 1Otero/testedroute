@@ -25,7 +25,7 @@ export class AllStoreAndProducerComponent {
       createdDate: new Date()
     },
     listStore: [{
-      storeId: 1,
+      _storeId: 1,
       name: "vanda",
       email: "vanda@gmail.com",
       description: "vanda perro negro",

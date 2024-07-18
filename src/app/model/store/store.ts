@@ -1,5 +1,5 @@
 export interface Store {
-    storeId:Number|null;
+    _storeId:Number|null;
     name:String;
     email:String;
     description:String;

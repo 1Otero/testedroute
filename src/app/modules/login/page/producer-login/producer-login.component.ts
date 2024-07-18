@@ -35,7 +35,7 @@ export class ProducerLoginComponent {
        //this.producer= meProducer.producer[0];
        //const producer= meBody.producer[0];
        //this.producerId= producer.producerId;
-       this.producerId= meBody.producerId;
+       this.producerId= meBody._producerId;
        //this.route.navigate(['/home/homeproducer'], { state: {producer: this.producer}});
        this.route.navigate(['/home/homeproducer'], { state: {id: this.producerId}});
        localStorage.setItem("producer", JSON.stringify(meBody))

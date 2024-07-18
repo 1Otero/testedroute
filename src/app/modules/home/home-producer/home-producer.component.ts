@@ -20,15 +20,14 @@ export class HomeProducerComponent {
   }
   getInfoProducer(){
     var idProducer= 0;
-    var bodyStore= localStorage.getItem("producer")
-    console.log(bodyStore)
-    if(bodyStore == null){
+    var bodyProducer= localStorage.getItem("producer")
+    if(bodyProducer == null){
       const navigate= this.router.getCurrentNavigation(); 
       idProducer= navigate?.extras?.state?.['id']
     }else{
-      var jsonBody= JSON.parse(bodyStore)
+      var jsonBody= JSON.parse(bodyProducer)
       //idProducer= Number.parseInt(jsonBody.producerId)
-      idProducer= jsonBody.producerId
+      idProducer= jsonBody._producerId
     }
     //const producer= navigate?.extras?.state?.['producer']
     var arrayHome: any;
@@ -43,11 +42,11 @@ export class HomeProducerComponent {
         // if(successBody[0].listStore.length == 1 && successBody[0].listStore[0]==null){
         //   this.listStore= []
         //   return
-        // } 
-        console.log(this.producer)
+        // }
         this.listStore= successBody.listStore
+        console.log(this.listStore)
         localStorage.setItem("listStore", JSON.stringify(this.listStore.map(s => {
-          return {storeId: s.storeId, "codStore": s.codStore}
+          return {_storeId: s._storeId, "codStore": s.codStore}
         })))
         this.alertPrincipalService.showAlert({type: 'success', message: "Bienvenido Yo-Producer - " + this.producer?.name})
         return;
