@@ -9,10 +9,12 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { AlertModule } from './modules/alert/alert.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HeadComponent } from './modules/utils/head/head.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeadComponent
   ],
   imports: [
     BrowserModule,

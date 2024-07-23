@@ -24,7 +24,7 @@ const routes: Routes = [{
   loadChildren: () => import('./modules/store-and-producer/store-and-producer.module').then(s => s.StoreAndProducerModule)
 },{
   path: 'signup',
-  loadChildren: () => import('./modules/producer-signup/producer-signup.module').then(s => s.ProducerSignupModule)
+  loadChildren: () => import('./modules/signup/signup.module').then(s => s.SignupModule)
 }, {
   path: 'login',
   loadChildren: () => import('./modules/login/login.module').then(l => l.LoginModule)

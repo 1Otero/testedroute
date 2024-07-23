@@ -1,13 +1,13 @@
 import { STEPPER_GLOBAL_OPTIONS, StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, Input, ElementRef, ViewChild, OnInit, Renderer2 } from '@angular/core';
 import { FormsModule, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
-import { SessionTokenService } from './../../../service/session-token/session-token.service'
-import { StoreAndProducerService } from './../../../service/store-and-producer/store-and-producer.service'
-import { JsonStoreAndProducer } from './../../../model/storeandproducer/json-store-and-producer'
+import { SessionTokenService } from './../../../../service/session-token/session-token.service'
+import { StoreAndProducerService } from './../../../../service/store-and-producer/store-and-producer.service'
+import { JsonStoreAndProducer } from './../../../../model/storeandproducer/json-store-and-producer'
 import { MatStepper } from '@angular/material/stepper';
-import { Storeandproducer } from '../../../model/storeandproducer/storeandproducer';
-import { AlertPrincipalService } from '../../../service/alert/alert-principal.service';
-import { ComparePassword } from '../../../model/utils/compare/compare-password';
+import { Storeandproducer } from './../../../../model/storeandproducer/storeandproducer';
+import { AlertPrincipalService } from './../../../../service/alert/alert-principal.service';
+import { ComparePassword } from './../../../../model/utils/compare/compare-password';
 import { Router } from '@angular/router';
 
 @Component({
