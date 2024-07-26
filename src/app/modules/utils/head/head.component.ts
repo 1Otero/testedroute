@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HeadService } from '../../../service/utils/head/head.service';
+import { Infouserhead } from '../../../model/utils/infouserhead/infouserhead';
 
 @Component({
   selector: 'app-head',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class HeadComponent {
  isLogged:Boolean=false;
+ private infoUser:Infouserhead= {
+  id: 1,
+  name: "forever",
+  age: 37,
+ };
  //isLogged:Boolean=true;
  listMenuProducer= [{
   name: "home",
@@ -40,4 +47,13 @@ export class HeadComponent {
     navChild: null
   }]  
  }];
+ get nameUser(){
+  return this.infoUser.name
+ }
+ constructor(private headService:HeadService){
+   headService.headObservable.subscribe((h) => {
+    console.log(h);
+    this.infoUser.name= h.name
+   })
+ }
 }

@@ -4,6 +4,8 @@ import { LoginService } from '../../../../service/login/login.service';
 import { Producer } from '../../../../model/producer/producer';
 import { ProducerLogin } from '../../../../model/utils/login/producer-login';
 import { AlertPrincipalService } from '../../../../service/alert/alert-principal.service';
+import { HeadService } from '../../../../service/utils/head/head.service';
+import { Infouserhead } from './../../../../model/utils/infouserhead/infouserhead'
 
 @Component({
   selector: 'app-producer-login',
@@ -17,7 +19,9 @@ export class ProducerLoginComponent {
     password: ""
   };
   producerId:Number|null=null;
-  constructor(private route:Router, private login:LoginService, private alertPrincipalService:AlertPrincipalService){}
+  constructor(private route:Router, private login:LoginService, private alertPrincipalService:AlertPrincipalService,
+    private headService:HeadService
+  ){}
   producerLogin(){
     //this.login.getProducerLogin("van@gmail.com", "123") 
     //this.login.getProducerLogin("vanotero@gmail.com", "123")
@@ -38,6 +42,12 @@ export class ProducerLoginComponent {
        this.producerId= meBody._producerId;
        //this.route.navigate(['/home/homeproducer'], { state: {producer: this.producer}});
        this.route.navigate(['/home/homeproducer'], { state: {id: this.producerId}});
+       var infoUserHead:Infouserhead= {
+         id: 1,
+         name: "van",
+         age: 57
+       }
+       this.headService.refreshInfo(infoUserHead)
        localStorage.setItem("producer", JSON.stringify(meBody))
        return
       }
