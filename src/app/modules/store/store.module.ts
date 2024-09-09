@@ -4,16 +4,25 @@ import { CommonModule } from '@angular/common';
 import { StoreRoutingModule } from './store-routing.module';
 import { CardStoreComponent } from './page/card-store/card-store.component';
 import { AllStoreComponent } from './all-store/all-store.component';
+import { CreateStoreComponent } from './create-store/create-store.component';
+import { CreateStoreByProducerComponent } from './create-store-by-producer/create-store-by-producer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
   declarations: [
     CardStoreComponent,
-    AllStoreComponent
+    AllStoreComponent,
+    CreateStoreComponent,
+    CreateStoreByProducerComponent
   ],
   imports: [
     CommonModule,
-    StoreRoutingModule
+    StoreRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CardStoreComponent,

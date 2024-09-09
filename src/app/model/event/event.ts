@@ -8,5 +8,7 @@ export interface Event {
         startEvent:Date;
         endEvent:Date;
         notView:Number;
+        codEvent?:String;
+        createdEvent?: Date;
         //producerId:String;
 }

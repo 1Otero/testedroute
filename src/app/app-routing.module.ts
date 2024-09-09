@@ -35,6 +35,9 @@ const routes: Routes = [{
   path: 'event',
   loadChildren: () => import('./modules/event/event.module').then(e => e.EventModule)
 },{
+  path: 'store',
+  loadChildren: () => import('./modules/store/store.module').then(e => e.StoreModule)
+},{
   path: '**',
   redirectTo: 'utils/not-found',
   pathMatch: 'full' 

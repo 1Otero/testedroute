@@ -1,0 +1,8 @@
+<body class="md:flex md:flex-wrap items-center">
+    <div *ngFor="let info of listEventByStore">
+      <app-event-store [event]="info.meEvents"></app-event-store>
+    </div>
+    <div *ngIf="!listEventByStore">
+        <mat-spinner></mat-spinner>
+     </div>
+</body>

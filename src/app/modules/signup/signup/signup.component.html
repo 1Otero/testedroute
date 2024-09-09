@@ -1,26 +1,30 @@
 <!-- <div class="md:flex md:flex-grow md:justify-center">
     <div class="md:w-1/2"> -->
 <div>
-    <div>
-        <div class="w-full" (click)="changeProducer()">
+    <div class="md:pr-10 md:pl-10">
+        <div class="w-full">
           <!--<div class="bg-blue-800 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-800 rounded-lg px-5 md:py-2.5 md:me-2 md:mb-2 dark:bg-blue-500 dark:hover:bg-blue-500 dark:focus:ring-gray-400 dark:border-gray-400">-->
             <!--<div class="bg-blue-800 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-800 rounded-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-500 dark:focus:ring-gray-400 dark:border-gray-400">-->
-          <div class="bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-800 rounded-lg px-5 py-2.5 md:me-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-500 dark:focus:ring-gray-400 dark:border-gray-400">
-            <p class="text-white text-3xl font-semibold text-center">Producer signup</p>
+          <div (click)="changeProducer()" class="bg-white flex justify-around md:justify-end">
+            <div class="w-5/6 md:w-3/5 bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-800 rounded-lg px-3 py-2 md:me-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-500 dark:focus:ring-gray-400 dark:border-gray-400">
+              <p class="text-white text-3xl font-semibold text-center">Producer signup</p>
+            </div>
           </div>
-          <div *ngIf="producerSignup">
-            <app-producer-signup />
-          </div>
+            <div *ngIf="producerSignup">
+              <app-producer-signup />
+            </div>
         </div>
-        <div class="w-full" (click)="changeAdmin()">
+        <div class="w-full">
           <!--<div class="bg-blue-800 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-800 rounded-lg px-5 md:py-2.5 md:me-2 md:mb-2 dark:bg-blue-500 dark:hover:bg-blue-500 dark:focus:ring-gray-400 dark:border-gray-400">-->
             <!--<div class="bg-blue-800 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-800 rounded-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-500 dark:focus:ring-gray-400 dark:border-gray-400">-->
-          <div class="bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-800 rounded-lg px-5 py-2.5 md:me-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-500 dark:focus:ring-gray-400 dark:border-gray-400">
-            <p class="text-white text-3xl font-semibold text-center">Admin signup</p>
+          <div class="bg-white flex justify-around md:justify-start" (click)="changeAdmin()">
+            <div class="w-5/6 md:w-3/5 bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-800 rounded-lg px-3 py-2 md:me-2 mb-2 dark:bg-gray-500 dark:hover:bg-gray-500 dark:focus:ring-gray-400 dark:border-gray-400">
+              <p class="text-white text-3xl font-semibold text-center">Admin signup</p>
+            </div>
           </div>
-          <div *ngIf="adminSignup">
-            <div><p>Esto se debe cambiar por el componente admin signup</p></div>
-          </div>
+            <div *ngIf="adminSignup">
+              <div><p>Esto se debe cambiar por el componente admin signup</p></div>
+            </div>
         </div>
         <div>
 

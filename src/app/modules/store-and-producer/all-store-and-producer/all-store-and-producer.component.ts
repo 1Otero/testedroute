@@ -53,4 +53,5 @@ export class AllStoreAndProducerComponent {
        this.listStoreAndProducer= list
     });
   }
+
 }

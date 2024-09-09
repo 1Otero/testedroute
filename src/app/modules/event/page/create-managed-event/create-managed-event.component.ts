@@ -2,7 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { Event } from '../../../../model/event/event';
 import { StatusEvent } from '../../../../model/event/status-event/status-event';
 import { EventService } from '../../../../service/event/event.service';
-import { Dialog, DIALOG_DATA } from '@angular/cdk/dialog';
+import { Dialog, DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-create-managed-event',
@@ -29,7 +30,9 @@ export class CreateManagedEventComponent {
  }
  private dataBody={idProducer: "", idStore: ""}
  constructor(private eventService:EventService,
-             @Inject(DIALOG_DATA) data:any
+             @Inject(DIALOG_DATA) data:any,
+             private dialogRef:DialogRef,
+             private router:Router
  ){
   console.log(data)
   if(data){
@@ -50,6 +53,8 @@ export class CreateManagedEventComponent {
     .subscribe(e => {
       console.log("new Event")
       console.log(e)
+      this.dialogRef.close("lol")
+      return this.router.navigate([`/home/homestore/${this.dataBody.idStore}`])
     })
   }
  }

@@ -4,6 +4,8 @@ import { StoreService } from '../../../service/store/store.service';
 import { Store } from '../../../model/store/store';
 import { Dialog } from '@angular/cdk/dialog'
 import { CreateManagedEventComponent } from '../../event/page/create-managed-event/create-managed-event.component';
+import { EventService } from '../../../service/event/event.service'
+import { EventAndProducerInfo } from '../../../model/event/more/event-and-producer-info';
 
 @Component({
   selector: 'app-home-store',
@@ -11,6 +13,7 @@ import { CreateManagedEventComponent } from '../../event/page/create-managed-eve
   styleUrl: './home-store.component.css'
 })
 export class HomeStoreComponent implements OnInit{
+  @Input() listInfoEventByStore?:EventAndProducerInfo[]
   @Input("store") store:Store={
     _storeId: null,
     name: "Verificar",
@@ -24,9 +27,7 @@ export class HomeStoreComponent implements OnInit{
   };
   private idStoreGlobal:String="";
   private idProducerGlobal:String="";
-  constructor(private route: ActivatedRoute, private storeService:StoreService, private dialog:Dialog){
-    console.log("params")
-  }
+  constructor(private route: ActivatedRoute, private storeService:StoreService, private dialog:Dialog, private eventService:EventService){}
   ngOnInit():void{
     const params= this.route.snapshot.params
     console.log("params")
@@ -39,6 +40,7 @@ export class HomeStoreComponent implements OnInit{
         console.log("idStore null 404!!!")
         return
       }
+      this.getAllEventsActiveByStoreId(idStore)
       const bodyListStore:Store[]= JSON.parse(listStore)
       console.log(bodyListStore)
       const meStore= bodyListStore.find(s => s._storeId == idStore)
@@ -96,5 +98,22 @@ export class HomeStoreComponent implements OnInit{
       minWidth: "500px",
       minHeight: "500px"
     })
+    this.dialog.afterAllClosed.subscribe(e => {
+      console.log(e)
+      location.reload()
+    })
+  }
+  backView(){
+    window.history.back();
+    console.log("backing page")
+  }
+  getAllEventsActiveByStoreId(idStore:String){
+   console.log(idStore)
+   this.eventService.getAllEventsByStoreId(idStore)
+   .subscribe(e => {
+    console.log("allEventsByStoreId: ")
+    console.log(e)
+    this.listInfoEventByStore= e.success
+   })   
   }
 }

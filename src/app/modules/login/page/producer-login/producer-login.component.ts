@@ -19,6 +19,7 @@ export class ProducerLoginComponent {
     password: ""
   };
   producerId:Number|null=null;
+  private nameProducer:String="";
   constructor(private route:Router, private login:LoginService, private alertPrincipalService:AlertPrincipalService,
     private headService:HeadService
   ){}
@@ -39,7 +40,10 @@ export class ProducerLoginComponent {
        //this.producer= meProducer.producer[0];
        //const producer= meBody.producer[0];
        //this.producerId= producer.producerId;
+       console.log("meBody:")
+       console.log(meBody)
        this.producerId= meBody._producerId;
+       this.nameProducer= meBody.name
        //this.route.navigate(['/home/homeproducer'], { state: {producer: this.producer}});
        this.route.navigate(['/home/homeproducer'], { state: {id: this.producerId}});
        var infoUserHead:Infouserhead= {
@@ -47,8 +51,9 @@ export class ProducerLoginComponent {
          name: "van",
          age: 57
        }
-       this.headService.refreshInfo(infoUserHead)
+       //this.headService.refreshInfo(infoUserHead)
        localStorage.setItem("producer", JSON.stringify(meBody))
+       this.alertPrincipalService.showAlert({type: 'success', message: "Bienvenido Yo-Producer - " + this.nameProducer})
        return
       }
       this.alertPrincipalService.showAlert({type:"danger", message:"No se encontro registro Yo-Producer con ese correo y contraseña"})

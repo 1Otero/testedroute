@@ -1,26 +1,41 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../../../service/home/home.service';
 import { Producer } from '../../../model/producer/producer';
 import { Store } from '../../../model/store/store';
 import { CardStoreComponent } from '../../store/page/card-store/card-store.component';
 import { AlertPrincipalService } from '../../../service/alert/alert-principal.service';
+import { EventService } from '../../../service/event/event.service';
+import { EventAndProducerInfo } from '../../../model/event/more/event-and-producer-info';
+import { HeadComponent } from '../../utils/head/head.component';
+import { HeadService } from '../../../service/utils/head/head.service';
 
 @Component({
   selector: 'app-home-producer',
   templateUrl: './home-producer.component.html',
   styleUrl: './home-producer.component.css',
 })
-export class HomeProducerComponent {
+export class HomeProducerComponent implements OnChanges{
   //aqui debe recibir el id del producer que va ingresar, y asi mostrar informacion
   producer!:Producer;
   listStore!:Store[];
-  constructor(private router:Router, private homeService:HomeService, private alertPrincipalService:AlertPrincipalService){
-    this.getInfoProducer();
+  @Input() listEventsInfoProducer?:EventAndProducerInfo[];
+  @Input() tstChanges:string='';
+  constructor(private router:Router, private homeService:HomeService, private alertPrincipalService:AlertPrincipalService, 
+    private eventService:EventService, private cdtChanges:ChangeDetectorRef, private headService:HeadService){
+    this.getInfoProducerAndStore();
   }
-  getInfoProducer(){
+  ngOnChanges(changes: SimpleChanges){
+    console.log("changes:")
+    console.log(changes['tstChanges'])
+    if(changes['tstChanges']){
+     console.log("response: ")
+     console.log(this.tstChanges) 
+    }
+  }
+  getInfoProducerAndStore(){
     var idProducer= 0;
-    var bodyProducer= localStorage.getItem("producer")
+    let bodyProducer= localStorage.getItem("producer")
     if(bodyProducer == null){
       const navigate= this.router.getCurrentNavigation(); 
       idProducer= navigate?.extras?.state?.['id']
@@ -28,7 +43,11 @@ export class HomeProducerComponent {
       var jsonBody= JSON.parse(bodyProducer)
       //idProducer= Number.parseInt(jsonBody.producerId)
       idProducer= jsonBody._producerId
+      this.fillProducerAndStores(idProducer)
+      this.fillEventsByProducer(idProducer)
     }
+  }
+  fillProducerAndStores(idProducer:Number){
     //const producer= navigate?.extras?.state?.['producer']
     var arrayHome: any;
     //this.producer= producer
@@ -43,12 +62,12 @@ export class HomeProducerComponent {
         //   this.listStore= []
         //   return
         // }
+        this.headService.refreshInfo({age: 27, id: 777, name: this.producer.name})
         this.listStore= successBody.listStore
         console.log(this.listStore)
         localStorage.setItem("listStore", JSON.stringify(this.listStore.map(s => {
           return {_storeId: s._storeId, "codStore": s.codStore}
         })))
-        this.alertPrincipalService.showAlert({type: 'success', message: "Bienvenido Yo-Producer - " + this.producer?.name})
         return;
       }
       ///Aqui se debe tocar la alarma o alert global 
@@ -59,5 +78,16 @@ export class HomeProducerComponent {
       console.log("not yet store")
       return;
     });
+  }
+  fillEventsByProducer(producerId:Number){
+    this.eventService.getAllEventsByProducer(producerId.toString()).subscribe((e) => {
+      console.log("listEvents:")
+      console.log(e.success)
+      this.listEventsInfoProducer= e.success
+      console.log(this.listEventsInfoProducer[0])
+      console.log(typeof this.listEventsInfoProducer[0].meEvents)
+      console.log(this.listEventsInfoProducer[0].meEvents.name)
+      console.log(this.listEventsInfoProducer[0].meEvents)
+    })
   }
 }

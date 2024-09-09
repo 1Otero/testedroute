@@ -1,17 +1,45 @@
-<body class="flex flex-grow justify-center mt-7">
-    <div class="w-3/4">
-        <div>
+<body class="flex flex-grow justify-center">
+    <div class="w-5/6 md:w-3/4 p-3">
+        <!-- <div>
+            validar si esto se quita, o se pone otra informacion del usuario
             <div *ngIf="producer != undefined">
-                <h2>{{producer.name}}</h2>
+                <h2>Yo-Producer <strong>{{producer.name}}</strong></h2>
                 <p>{{producer.email}}</p>
                 <p>{{producer.password}}<p>
             </div>
-        </div>     
-        <div *ngIf="listStore != undefined && listStore.length > 0" class="bg-gray-600 p-11">
-            <h2>Me store's</h2>
-            <div *ngFor="let store of listStore">
-               <!--Recordar que aqui debe venir un componente de store para mostrar una card por tienda-->
-               <app-card-store [meStore]="store"></app-card-store>
+        </div>      -->
+        <div *ngIf="listStore == undefined || listStore.length < 1">
+            <!-- Not found store´s for <strong>{{producer?.name}}</strong> -->
+            <div class="flex flex-grow justify-center items-center h-52">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+        <div *ngIf="listStore != undefined && listStore.length > 0">
+            <div class="flex flex-grow justify-between">
+                <div>
+                    <h2>Me store's</h2>
+                </div>
+                <div>
+                    <div class="flex justify-center">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                            <path d="M17 0h-5.768a1 1 0 1 0 0 2h3.354L8.4 8.182A1.003 1.003 0 1 0 9.818 9.6L16 3.414v3.354a1 1 0 0 0 2 0V1a1 1 0 0 0-1-1Z"/>
+                            <path d="m14.258 7.985-3.025 3.025A3 3 0 1 1 6.99 6.768l3.026-3.026A3.01 3.01 0 0 1 8.411 2H2.167A2.169 2.169 0 0 0 0 4.167v11.666A2.169 2.169 0 0 0 2.167 18h11.666A2.169 2.169 0 0 0 16 15.833V9.589a3.011 3.011 0 0 1-1.742-1.604Z"/>
+                        </svg>
+                    </div>
+                    <p>New store</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-around">
+                <div *ngFor="let store of listStore" class="mb-4">
+                    <!--Recordar que aqui debe venir un componente de store para mostrar una card por tienda-->
+                    <app-card-store [meStore]="store"></app-card-store>
+                 </div>
+            </div>
+        </div>
+        <div>
+            <h2>Events</h2>
+            <div>
+                <app-events-producer [listEventsProducer]="listEventsInfoProducer" ></app-events-producer>
             </div>
         </div>
     </div>

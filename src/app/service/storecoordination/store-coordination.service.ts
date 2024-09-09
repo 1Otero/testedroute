@@ -6,6 +6,7 @@ import { Observable, tap } from 'rxjs'
 import { Entity } from '../../model/utils/response/entity'
 import { ListEntity } from '../../model/utils/response/list-entity'
 import { Storeandproducer } from '../../model/storeandproducer/storeandproducer'
+import { Store } from '../../model/store/store'
 
 @Injectable({
     providedIn: 'root'
@@ -31,10 +32,17 @@ export class StoreCoordinationService {
     createStoreCoordination(storeCoordination:StoreCoordination):Observable<String>{
         return this.httpClient.post<String>(`${environment.urllocal}/storecoordination/createstorecoordination`, storeCoordination)
         .pipe(
-            tap((s) => {
-                console.log(s);
-                return "reffff";
-            })
+         tap((s) => {
+          console.log(s);
+         })
         )
+    }
+    createStoreByProducer(store:Store, producerId:String){
+       return this.httpClient.post<Entity<Store>>(`${environment.urllocal}/storecoordination/createstorebyproducer`, {producerId, infoStore: store})
+       .pipe(
+        tap((e) => {
+            return e
+        })
+       )
     }
 }

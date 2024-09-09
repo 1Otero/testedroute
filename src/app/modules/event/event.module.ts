@@ -6,6 +6,7 @@ import { EventPresentationComponent } from './event-presentation/event-presentat
 import { CreateSimpleEventComponent } from './page/create-simple-event/create-simple-event.component';
 import { CreateManagedEventComponent } from './page/create-managed-event/create-managed-event.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({

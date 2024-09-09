@@ -11,7 +11,7 @@ import { Store } from '../../model/store/store';
 export class StoreService {
   url= environment.urllocal
   constructor(private httpClient:HttpClient) { }
-  getStore(storeId:Number):Observable<Entity<Store>>{
+  getStore(storeId:String):Observable<Entity<Store>>{
     return this.httpClient.get<Entity<Store>>(`${this.url}/store/getstore/${storeId}`)
     .pipe(
       tap(s => {

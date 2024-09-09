@@ -1,0 +1,55 @@
+<div id="rose-container">
+  <svg viewBox="0 0 100 100" width="200" height="200">
+    <g id="rose">
+      <path d="M50 90 C20 90 20 50 50 50 C80 50 80 90 50 90" fill="#ff69b4" />
+      <path d="M50 90 C35 90 35 60 50 60 C65 60 65 90 50 90" fill="#ff1493" />
+      <path d="M50 90 C45 90 45 70 50 70 C55 70 55 90 50 90" fill="#ff69b4" />
+      <line x1="50" y1="90" x2="50" y2="100" stroke="green" stroke-width="2" />
+    </g>
+  </svg>
+</div>
+
+<style>
+#rose-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+#rose {
+  transform-origin: center bottom;
+  animation: breathe 6s infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(0.5); }
+  50% { transform: scale(1); }
+}
+
+@keyframes open {
+  from { transform: scale(0.5); }
+  to { transform: scale(1); }
+}
+
+@keyframes close {
+  from { transform: scale(1); }
+  to { transform: scale(0.5); }
+}
+</style>
+
+<script>
+const rose = document.getElementById('rose');
+
+function openRose() {
+  rose.style.animation = 'open 3s forwards';
+  setTimeout(closeRose, 3000);
+}
+
+function closeRose() {
+  rose.style.animation = 'close 3s forwards';
+  setTimeout(openRose, 3000);
+}
+
+openRose(); // Start the animation cycle
+</script>

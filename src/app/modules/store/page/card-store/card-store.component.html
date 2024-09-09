@@ -1,8 +1,15 @@
 <!--<a href="{{urlStore}}" >-->
-<a routerLink={{urlStore}}>
- <div class="bg-slate-500 w-52 p-2">
-    <h2>{{meStore.name}}</h2>
-    <b>{{meStore.codStore}}</b>  
-    <p>{{meStore.email}}</p>
- </div>
-</a>      
+<body class="max-w-sm rounded overflow-hidden shadow-lg md:p-7 m-2">
+   <a routerLink={{urlStore}}>
+      <div class="w-52 p-2">
+         <div class="text-center">
+            <h2>{{meStore.name}}</h2>
+         </div>
+         <div class="text-center">
+            <p>{{meStore.description}}</p>
+         </div>
+         <p>{{meStore.email}}</p>
+         <p><strong>{{meStore.codStore}}</strong></p>  
+      </div>
+   </a>
+</body>
