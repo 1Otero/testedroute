@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { CreateSimpleEventComponent } from './modules/event/page/create-simple-event/create-simple-event.component';
+import { PresentationWebEventJobComponent } from './modules/event/page/presentation-web-event-job/presentation-web-event-job.component';
 
 const routes: Routes = [{
   path: '',
@@ -9,7 +9,7 @@ const routes: Routes = [{
   pathMatch: 'full'
 },{
   path: 'app',
-  component: CreateSimpleEventComponent
+  component: PresentationWebEventJobComponent
 },{
   path: 'app/:id',
   component: AppComponent

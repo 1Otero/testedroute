@@ -7,19 +7,21 @@ import { CreateSimpleEventComponent } from './page/create-simple-event/create-si
 import { CreateManagedEventComponent } from './page/create-managed-event/create-managed-event.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PresentationWebEventJobComponent } from './page/presentation-web-event-job/presentation-web-event-job.component';
 
 
 @NgModule({
   declarations: [
     EventPresentationComponent,
     CreateSimpleEventComponent,
-    CreateManagedEventComponent
+    CreateManagedEventComponent,
+    PresentationWebEventJobComponent
   ],
   imports: [
     CommonModule,
     EventRoutingModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
 })
 export class EventModule { }
