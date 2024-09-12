@@ -34,9 +34,9 @@ ngOnChanges(changes:SimpleChanges){
   console.log(changes)
  }
  if(changes["listEventsProducer"]){
-   console.log(changes["listEventsProducer"].currentValue)
-   console.log(changes["listEventsProducer"].previousValue)
-   console.log(changes["listEventsProducer"].firstChange)
+  //  console.log(changes["listEventsProducer"].currentValue)
+  //  console.log(changes["listEventsProducer"].previousValue)
+  //  console.log(changes["listEventsProducer"].firstChange)
    this.totalItems= this.listEventsProducer?.length==undefined?0:this.listEventsProducer?.length
    this.listTest= this.listEventsProducer?.slice(this.ofCurrentIndex, this.pageSize)
   //  this.currentIndex= 0;
@@ -167,9 +167,9 @@ onCount(e:any){
   this.meEndIndex= 4
 }
 onPageSizeChange() {
-    console.log(this.meEndIndex)
-  console.log(this.dataSource.data)
-  //this.dataSource.data = this.data.slice(0, this.meEndIndex);
+  // console.log(this.meEndIndex)
+  // console.log(this.dataSource.data)
+  // this.dataSource.data = this.data.slice(0, this.meEndIndex);
   this.dataSource.data = this.listEventsProducer?.slice(this.startIndex, this.meEndIndex) || [];
   return this.meEndIndex
 }

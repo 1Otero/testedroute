@@ -1,12 +1,17 @@
-<body>
- <div>
-    <div><input type="text" placeholder="name" [(ngModel)]="store.name"></div>
-    <div><input type="text" placeholder="description" [(ngModel)]="store.description"></div>
-    <div><input type="text" placeholder="nitStore" [(ngModel)]="store.nitStore"></div>
-    <div><input type="email" placeholder="email" [(ngModel)]="store.email"></div>
-    <div><input type="text" [(ngModel)]="store.status"></div>
-    <div><input type="text" [(ngModel)]="store.notView"></div>
-    <button class="p-2 focus:outline-none text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-purple-300 font-bold rounded-lg text- px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" 
-    (click)="creteStoreByProducer()">Create me store</button>
+<body class="bg-white flex justify-center items-center">
+ <div class="text-center">
+  <h2>crear tienda</h2>  
+  <p>Debes colocar la informacion de tu tienda a administrar, recuerda que asi podras iniciar a administrar los eventos, 
+   y ser el mejor productor</p>
+  <div>
+     <div><input type="text" placeholder="name" [(ngModel)]="store.name"></div>
+     <div><input type="text" placeholder="description" [(ngModel)]="store.description"></div>
+     <div><input type="text" placeholder="nitStore" [(ngModel)]="store.nitStore"></div>
+     <div><input type="email" placeholder="email" [(ngModel)]="store.email"></div>
+     <div><input type="text" [(ngModel)]="store.status"></div>
+     <div><input type="text" [(ngModel)]="store.notView"></div>
+     <button class="p-2 focus:outline-none text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-purple-300 font-bold rounded-lg text- px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" 
+     (click)="creteStoreByProducer()">Create me store</button>
+  </div>
  </div>
 </body>

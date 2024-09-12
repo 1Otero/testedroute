@@ -30,8 +30,6 @@ export class HomeStoreComponent implements OnInit{
   constructor(private route: ActivatedRoute, private storeService:StoreService, private dialog:Dialog, private eventService:EventService){}
   ngOnInit():void{
     const params= this.route.snapshot.params
-    console.log("params")
-    console.log(params)
     if(params != null){
       var idStore= params['id']
       this.idStoreGlobal= idStore
@@ -54,7 +52,6 @@ export class HomeStoreComponent implements OnInit{
           return    
         }
         this.store= s.success
-        console.log(this.store)
       })
     }
     // const params= this.route.params.subscribe(p => {

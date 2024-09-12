@@ -13,6 +13,9 @@ const routes: Routes = [{
 },{
   path: 'createeventsimple',
   component: CreateSimpleEventComponent
+},{
+  path: 'eventpresentation',
+  component: EventPresentationComponent
 }];
 
 @NgModule({

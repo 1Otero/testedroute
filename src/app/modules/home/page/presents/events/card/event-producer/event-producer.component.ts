@@ -8,9 +8,5 @@ import { Event } from '../../../../../../../model/event/event';
 })
 export class EventProducerComponent {
  @Input("meEvent") event!:Event;
- constructor(){
-  setTimeout( () => {
-    console.log(this.event.name)
-  }, 1000)
- }
+ constructor(){}
 }
