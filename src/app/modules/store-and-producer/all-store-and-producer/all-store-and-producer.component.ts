@@ -16,6 +16,7 @@ export class AllStoreAndProducerComponent {
   @Input("listStoreAndProducer") listStoreAndProducer:ListStoreByProducer= {
     producer: {
       producerId: null,
+      _producerId: "",
       name: "re",
       lastNameProducer: "fff",
       email: "van@gmail.com",

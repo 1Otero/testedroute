@@ -20,6 +20,7 @@ export class CreateManagedEventComponent {
  }]
  event:Event={
   eventId: 0,
+  _eventId: "",
   name: "perreo intenso",
   description: "simple event create",
   status: 1,

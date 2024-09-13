@@ -1,4 +1,5 @@
 export interface Event {
+        _eventId: String;
         eventId:Number|String;
         name:String;
         description:String;

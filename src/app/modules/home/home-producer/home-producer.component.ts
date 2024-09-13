@@ -62,7 +62,8 @@ export class HomeProducerComponent implements OnChanges{
       if(successBody!==undefined || bodyHomeProducer.status!=404){
         successBody[0]==undefined?console.log("not yet store"):arrayHome=successBody.listStore
         this.producer= successBody.producer
-        let meProducerId =successBody.producer._producerId
+        //let meProducerId =successBody.producer._producerId
+        let meProducerId = this.producer._producerId
         this.producerId= meProducerId
         // if(successBody[0].listStore.length == 1 && successBody[0].listStore[0]==null){
         //   this.listStore= []
@@ -97,7 +98,7 @@ export class HomeProducerComponent implements OnChanges{
   }
   viewNewClient(){
      this.dialog.open(CreateStoreByProducerComponent, {
-      data: {producerId: this.producerId,},
+      data: {producerId: this.producerId},
       height: "600px",
       width: "800px"
      })

@@ -9,6 +9,7 @@ import { Event } from '../../../../model/event/event';
 })
 export class CreateSimpleEventComponent {
   meEvent:Event= {
+    _eventId: "",
     eventId: 0,
     name: "",
     description: "simple event create",

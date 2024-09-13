@@ -1,5 +1,9 @@
-<body>
+<body class="bg-white">
     <div>
+        <div class="w-1/5 m-1 p-2 text-center focus:outline-none text-white bg-red-700 hover:bg-red-600 focus:ring-4 focus:ring-purple-300 font-bold rounded-lg py-2.5 mb-2 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+    (click)="backView()">
+        Volver
+    </div>
         <div class="flex justify-between m-2">
             <div class="md:flex p-3 md:p-4">
               <div class="md:flex md:p-1"><p>Numero de usuarios:</p> <Strong>4</Strong></div>
@@ -13,13 +17,26 @@
                <div class="md:flex md:p-1"><p>Tipo evento:</p><strong>Privado</strong></div>
             </div>
         </div>
-        <div class="flex flex-wrap md:justify-center text-center p-3 h-full">
-            <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Usuarios</div>
-            <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Ticktes</div>
-            <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Consumos</div>
-            <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Registro ingresos</div>
-            <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Permisos logistica</div>
-            <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Configuracion evento</div>
+        <div>
+            <div class="flex flex-wrap md:justify-center text-center p-3 h-full">
+                <div (click)="viewToUser()" class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Usuarios</div>
+                <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Ticktes</div>
+                <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Consumos</div>
+                <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Registro ingresos</div>
+                <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Permisos logistica</div>
+                <div class="md:m-2 w-5/12 m-2 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6">Configuracion evento</div> 
+                <!-- <div class="p-2 md:m-2 w-5/12 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg md:p-6">Usuarios</div>
+                <div class="p-2 md:m-2 w-5/12 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg md:p-6">Ticktes</div>
+                <div class="p-2 md:m-2 w-5/12 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg md:p-6">Consumos</div>
+                <div class="p-2 md:m-2 w-5/12 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg md:p-6">Registro ingresos</div>
+                <div class="p-2 md:m-2 w-5/12 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg md:p-6">Permisos logistica</div>
+                <div class="p-2 md:m-2 w-5/12 md:w-1/4 relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg md:p-6">Configuracion evento</div> -->
+            </div>
+            <!-- <div class="w-3/4"></div> -->
         </div>
+        <!-- <div class="m-1 p-2 text-center focus:outline-none text-white bg-red-700 hover:bg-red-600 focus:ring-4 focus:ring-purple-300 font-bold rounded-lg text- px-5 py-2.5 mb-2 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+    (click)="closeDialgo()">
+        Close x
+    </div> -->
     </div>
 </body>

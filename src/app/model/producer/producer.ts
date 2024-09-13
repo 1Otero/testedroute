@@ -1,4 +1,5 @@
 export interface Producer {
+    _producerId:String;
     producerId:Number|null;
     name:String;
     lastNameProducer:String;

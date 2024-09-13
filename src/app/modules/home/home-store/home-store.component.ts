@@ -40,7 +40,7 @@ export class HomeStoreComponent implements OnInit{
       }
       this.getAllEventsActiveByStoreId(idStore)
       const bodyListStore:Store[]= JSON.parse(listStore)
-      console.log(bodyListStore)
+      // console.log(bodyListStore)
       const meStore= bodyListStore.find(s => s._storeId == idStore)
       if(meStore == null){
          console.log("This store is private")
@@ -105,11 +105,8 @@ export class HomeStoreComponent implements OnInit{
     console.log("backing page")
   }
   getAllEventsActiveByStoreId(idStore:String){
-   console.log(idStore)
    this.eventService.getAllEventsByStoreId(idStore)
    .subscribe(e => {
-    console.log("allEventsByStoreId: ")
-    console.log(e)
     this.listInfoEventByStore= e.success
    })   
   }
