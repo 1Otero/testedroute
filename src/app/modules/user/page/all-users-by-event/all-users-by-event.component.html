@@ -1,0 +1,13 @@
+<p>all-users-by-event works!</p>
+<body>
+    <div *ngIf="listAllUsersByEvent != undefined && listAllUsersByEvent.length > 1">
+        <div *ngFor="let u of listAllUsersByEvent">
+            <app-card-user-info [meuser]="u.meUser"></app-card-user-info>
+        </div>
+    </div>
+    <div *ngIf="listAllUsersByEvent == undefined || listAllUsersByEvent.length < 1">
+      <div class="flex flex-grow justify-center items-center h-52">
+        <mat-spinner></mat-spinner>
+      </div> 
+    </div>
+</body>
