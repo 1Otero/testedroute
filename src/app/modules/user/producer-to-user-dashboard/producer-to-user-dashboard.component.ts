@@ -61,5 +61,9 @@ getPlantillaUsersByEvent(){
     meA.remove()
     window.URL.revokeObjectURL(meUrl)
   })  
+  // .subscribe(e => {
+  //   console.log(e)
+
+  // })
 }
 }
