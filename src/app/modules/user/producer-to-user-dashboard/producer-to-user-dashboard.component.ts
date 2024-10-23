@@ -5,6 +5,7 @@ import { InfoUserByEvent } from '../../../model/user/info-user-by-event';
 import { UpfileService } from '../../../service/upfile/upfile.service';
 // import * as FileServer from 'file-saver'
 import { environment } from '../../../../environments/environment.dev';
+import * as XLSX from 'xlsx'
 
 @Component({
   selector: 'app-producer-to-user-dashboard',
@@ -65,5 +66,28 @@ getPlantillaUsersByEvent(){
   //   console.log(e)
 
   // })
+}
+data = [
+  { name: 'Juan', edad: 30, sexo: 'Masculino' },
+  { name: 'Ana', edad: 25, sexo: 'Femenino' }
+];
+tryDownloadFromFront(){
+  function s2ab(s:any) {
+    const buf = new ArrayBuffer(s.length);
+    const view = new Uint8Array(buf);
+    for (let i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+    return buf;   
+  
+  }
+  const workbook = XLSX.utils.book_new();
+  const worksheet = XLSX.utils.json_to_sheet(this.data);
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+  const excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+  const blob = new Blob([s2ab(excelFile)], { type: 'application/octet-stream' });
+  const filename = 'mi_excel.xlsx';
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
 }
 }

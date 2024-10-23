@@ -22,6 +22,8 @@ export class UpfileService {
     return this.http.get(`${environment.urllocal}/upfile/crearplantillabaseproductsbyevent/refffffromfront`, {responseType: 'blob'})
     .pipe(
       tap(e => {
+        console.log("e")
+        console.log(e)
         return e
       })
     )
